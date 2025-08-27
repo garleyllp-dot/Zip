@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZIP-коды: ключ к эффективной доставке</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0c0e2a 0%, #232850 100%);
+            color: #f0f0f0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .logo-icon {
+            font-size: 32px;
+            color: #4a6cf7;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(90deg, #4a6cf7, #8a64eb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #a0aec0;
+            margin-bottom: 30px;
+        }
+        
+        .presentation-container {
+            position: relative;
+            background: rgba(16, 18, 40, 0.8);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            margin-bottom: 40px;
+            min-height: 600px;
+        }
+        
+        .slide {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .slide.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .slide-number {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: rgba(74, 108, 247, 0.2);
+            color: #4a6cf7;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .slide-title {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            color: #4a6cf7;
+            border-left: 5px solid #8a64eb;
+            padding-left: 15px;
+        }
+        
+        .slide-content {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .slide-list {
+            list-style-type: none;
+            margin: 20px 0;
+        }
+        
+        .slide-list li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .slide-list li:before {
+            content: "•";
+            color: #4a6cf7;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+        
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .icon-item {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .icon-item:hover {
+            transform: translateY(-5px);
+            background: rgba(74, 108, 247, 0.1);
+        }
+        
+        .icon-item i {
+            font-size: 2.5rem;
+            color: #8a64eb;
+            margin-bottom: 15px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: rgba(16, 18, 40, 0.5);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        th {
+            background: rgba(74, 108, 247, 0.2);
+            color: #4a6cf7;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .highlight {
+            color: #8a64eb;
+            font-weight: bold;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .nav-btn {
+            background: linear-gradient(90deg, #4a6cf7, #8a64eb);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(74, 108, 247, 0.4);
+        }
+        
+        .nav-btn:disabled {
+            background: #2d3748;
+            color: #718096;
+            cursor: not-allowed;
+        }
+        
+        .progress-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            margin: 30px 0;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, #4a6cf7, #8a64eb);
+            width: 11%;
+            transition: width 0.3s ease;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #a0aec0;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .slide-title {
+                font-size: 1.6rem;
+            }
+            
+            .icon-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon"><i class="fas fa-map-marked-alt"></i></div>
+                <h1>ZIP-коды: ключ к эффективной доставке</h1>
+            </div>
+            <p class="subtitle">Оптимизация логистики и снижение затрат с помощью почтовых индексов</p>
+        </header>
+        
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+        
+        <div class="presentation-container">
+            <!-- Slide 1 -->
+            <div class="slide active" id="slide1">
+                <div class="slide-number">1/9</div>
+                <h2 class="slide-title">ZIP-коды: не просто цифры</h2>
+                <p class="slide-content">Инструмент для оптимизации логистики и снижения затрат</p>
+                
+                <div class="icon-grid">
+                    <div class="icon-item">
+                        <i class="fas fa-globe-americas"></i>
+                        <p>Глобальное покрытие</p>
+                    </div>
+                    <div class="icon-item">
+                        <i class="fas fa-robot"></i>
+                        <p>Автоматизация</p>
+                    </div>
+                    <div class="icon-item">
+                        <i class="fas fa-chart-line"></i>
+                        <p>Аналитика</p>
+                    </div>
+                    <div class="icon-item">
+                        <i class="fas fa-truck"></i>
+                        <p>Логистика</p>
+                    </div>
+                </div>
+                
+                <p class="slide-content">Презентация для команды SkyHarvest<br>Август 2025</p>
+            </div>
+            
+            <!-- Slide 2 -->
+            <div class="slide" id="slide2">
+                <div class="slide-number">2/9</div>
+                <h2 class="slide-title">Проблема: Адрес — это больше, чем просто строчки</h2>
+                <p class="slide-content">«Доставить по адресу: г. Орландо, ул. Озерная, д. 123»</p>
+                
+                <ul class="slide-list">
+                    <li><span class="highlight">Риск ошибок:</span> Города-тезки, повторяющиеся названия улиц.</li>
+                    <li><span class="highlight">Ручная обработка:</span> Медленная сортировка, человеческий фактор.</li>
+                    <li><span class="highlight">Неясная логистика:</span> Сложно группировать заказы и строить маршруты.</li>
+                    <li><span class="highlight">Непредсказуемые затраты:</span> Сложно точно рассчитывать стоимость и сроки доставки.</li>
+                </ul>
+                
+                <p class="slide-content">➔ Решение: Стандартизация через ZIP-код</p>
+            </div>
+            
+            <!-- Slide 3 -->
+            <div class="slide" id="slide3">
+                <div class="slide-number">3/9</div>
+                <h2 class="slide-title">Преимущество 1: Автоматизация и скорость</h2>
+                <p class="slide-content">ZIP-код — это язык, на котором говорят машины</p>
+                
+                <div class="icon-grid">
+                    <div class="icon-item">
+                        <i class="fas fa-barcode"></i>
+                        <p>Мгновенная сортировка</p>
+                    </div>
+                    <div class="icon-item">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <p>Скорость обработки</p>
+                    </div>
+                    <div class="icon-item">
+                        <i class="fas fa-binoculars"></i>
+                        <p>Прозрачность</p>
+                    </div>
+                </div>
+                
+                <ul class="slide-list">
+                    <li>Автоматизированные системы USPS, FedEx, UPS считывают ZIP-код и направляют отправление по нужному конвейеру без задержек.</li>
+                    <li>В разы быстрее ручного чтения полного адреса.</li>
+                    <li>Автоматическое присвоение трек-номеров и точное прогнозирование сроков доставки.</li>
+                </ul>
+                
+                <p class="slide-content highlight">Результат: Ускорение обработки заказов на 70%</p>
+            </div>
+            
+            <!-- Slide 4 -->
+            <div class="slide" id="slide4">
+                <div class="slide-number">4/9</div>
+                <h2 class="slide-title">Преимущество 2: Точность и отсутствие ошибок</h2>
+                <p class="slide-content">ZIP-код — это уникальный цифровой почтовый индекс</p>
+                
+                <ul class="slide-list">
+                    <li><span class="highlight">Устранение неоднозначности:</span> Однозначно идентифицирует географический сектор (SCF). Больше никакой путаницы между Orange, CA и Orange, FL.</li>
+                    <li><span class="highlight">Валидация адресов:</span> Система автоматически проверяет, совпадают ли город, штат и ZIP-код. Невозможно отправить заказ для Orlando с ZIP-кодом Miami.</li>
+                    <li><span class="highlight">Снижение затрат:</span> Минимизация дорогостоящих ошибок доставки и возвратов.</li>
+                </ul>
+                
+                <p class="slide-content highlight">Результат: Снижение количества ошибочных доставок на 95%</p>
+            </div>
+            
+            <!-- Slide 5 -->
+            <div class="slide" id="slide5">
+                <div class="slide-number">5/9</div>
+                <h2 class="slide-title">Преимущество 3: Оптимизация логистики и стоимости</h2>
+                <p class="slide-content">ZIP-код — основа для расчета маршрутов и тарифов</p>
+                
+                <div class="icon-grid">
+                    <div class="icon-item">
+                        <i class="fas fa-route"></i>
+                        <p>Группировка отправлений</p>
+                    </div>
+                    <div class="icon-item">
+                        <i class="fas fa-calculator"></i>
+                        <p>Определение тарифных зон</p>
+                    </div>
+                </div>
+                
+                <ul class="slide-list">
+                    <li>Логистические компании строят маршруты самолетов и фургонов, группируя посылки по ZIP-кодам.</li>
+                    <li>Пример: 32801 (Даунтаун) и 32825 (Аэропорт MCO) → один маршрут.</li>
+                    <li>Стоимость доставки рассчитывается исходя из зоны (расстояния), которая определяется по ZIP-коду.</li>
+                    <li>Доставка в 32801 (Орландо) дешевле, чем в 34747 (Киссимми).</li>
+                </ul>
+                
+                <p class="slide-content highlight">Результат: Снижение логистических затрат на 15-25%</p>
+            </div>
+            
+            <!-- Slide 6 -->
+            <div class="slide" id="slide6">
+                <div class="slide-number">6/9</div>
+                <h2 class="slide-title">Преимущество 4: Данные для аналитики и роста</h2>
+                <p class="slide-content">ZIP-коды — это золотая жила клиентской аналитики</p>
+                
+                <div class="icon-grid">
+                    <div class="icon-item">
+                        <i class="fas fa-chart-pie"></i>
+                        <p>Определение ключевых рынков</p>
+                    </div>
+                    <div class="icon-item">
+                        <i class="fas fa-bullseye"></i>
+                        <p>Планирование маркетинга</p>
+                    </div>
+                    <div class="icon-item">
+                        <i class="fas fa-route"></i>
+                        <p>Оптимизация доставки</p>
+                    </div>
+                    <div class="icon-item">
+                        <i class="fas fa-crystal-ball"></i>
+                        <p>Прогнозирование</p>
+                    </div>
+                </div>
+                
+                <ul class="slide-list">
+                    <li>Где наши самые лояльные клиенты? 32819 (Туристы, International Drive) или 32836 (Отели у Disney)?</li>
+                    <li>Таргетирование рекламы на самые перспективные районы.</li>
+                    <li>Группировка заказов по районам для эффективных ежедневных маршрутов курьеров.</li>
+                    <li>Точное планирование сроков доставки и складских мощностей.</li>
+                </ul>
+                
+                <p class="slide-content highlight">Результат: Увеличение ROI маркетинговых кампаний на 30%</p>
+            </div>
+            
+            <!-- Slide 7 -->
+            <div class="slide" id="slide7">
+                <div class="slide-number">7/9</div>
+                <h2 class="slide-title">Практический пример: 3 заказа в Орландо</h2>
+                <p class="slide-content">Как ZIP-код определяет логистическую стратегию</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Заказ №</th>
+                            <th>ZIP-код</th>
+                            <th>Район</th>
+                            <th>Логистическое решение</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#1</td>
+                            <td class="highlight">32801</td>
+                            <td>Даунтаун Орландо</td>
+                            <td>Объединить в один маршрут</td>
+                        </tr>
+                        <tr>
+                            <td>#2</td>
+                            <td class="highlight">32819</td>
+                            <td>International Drive</td>
+                            <td>→ Близко к даунтауну</td>
+                        </tr>
+                        <tr>
+                            <td>#3</td>
+                            <td class="highlight">34747</td>
+                            <td>Киссимми / Disney</td>
+                            <td>Отдельный маршрут или передача локальному партнеру. Стоимость доставки выше.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Slide 8 -->
+            <div class="slide" id="slide8">
+                <div class="slide-number">8/9</div>
+                <h2 class="slide-title">Вывод: ZIP-код — это стратегический актив</h2>
+                <p class="slide-content">Это не часть адреса, а уникальный машиночитаемый идентификатор</p>
+                
+                <ul class="slide-list">
+                    <li><span class="highlight">Фундамент</span> для автоматизации и эффективности логистики XXI века.</li>
+                    <li><span class="highlight">Прямой путь</span> к снижению операционных затрат и повышению удовлетворенности клиентов.</li>
+                    <li><span class="highlight">Мощный инструмент</span> для сбора данных и принятия стратегических бизнес-решений.</li>
+                </ul>
+                
+                <p class="slide-content highlight">Рекомендация:</p>
+                <ul class="slide-list">
+                    <li><span class="highlight">Внедрить</span> обязательную валидацию адресов по ZIP-коду на этапе оформления заказа.</li>
+                    <li><span class="highlight">Использовать</span> аналитику по ZIP-кодам для планирования маркетинга и логистики.</li>
+                </ul>
+            </div>
+            
+            <!-- Slide 9 -->
+            <div class="slide" id="slide9">
+                <div class="slide-number">9/9</div>
+                <h2 class="slide-title">Контакты</h2>
+                
+                <div style="text-align: center; margin: 40px 0;">
+                    <div style="font-size: 3rem; color: #4a6cf7; margin-bottom: 20px;">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <p class="slide-content">Вопросы?</p>
+                </div>
+                
+                <div style="text-align: center; margin: 40px 0;">
+                    <p class="slide-content" style="font-size: 1.8rem;">SkyHarvest</p>
+                    <p class="slide-content" style="font-size: 1.4rem;">sales.skyharvest@gmail.com</p>
+                </div>
+                
+                <p class="slide-content" style="text-align: center; margin-top: 50px;">Спасибо за внимание!</p>
+            </div>
+        </div>
+        
+        <div class="navigation">
+            <button class="nav-btn" id="prev-btn" disabled>
+                <i class="fas fa-arrow-left"></i> Назад
+            </button>
+            <button class="nav-btn" id="next-btn">
+                Вперед <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2025 SkyHarvest</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const progress = document.getElementById('progress');
+            let currentSlide = 0;
+            
+            // Initialize
+            updateButtons();
+            updateProgress();
+            
+            // Next button click event
+            nextBtn.addEventListener('click', function() {
+                if (currentSlide < slides.length - 1) {
+                    slides[currentSlide].classList.remove('active');
+                    currentSlide++;
+                    slides[currentSlide].classList.add('active');
+                    updateButtons();
+                    updateProgress();
+                }
+            });
+            
+            // Previous button click event
+            prevBtn.addEventListener('click', function() {
+                if (currentSlide > 0) {
+                    slides[currentSlide].classList.remove('active');
+                    currentSlide--;
+                    slides[currentSlide].classList.add('active');
+                    updateButtons();
+                    updateProgress();
+                }
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowRight') {
+                    nextBtn.click();
+                } else if (e.key === 'ArrowLeft') {
+                    prevBtn.click();
+                }
+            });
+            
+            // Update button states
+            function updateButtons() {
+                prevBtn.disabled = currentSlide === 0;
+                nextBtn.disabled = currentSlide === slides.length - 1;
+            }
+            
+            // Update progress bar
+            function updateProgress() {
+                const progressPercent = ((currentSlide + 1) / slides.length) * 100;
+                progress.style.width = progressPercent + '%';
+            }
+        });
+    </script>
+</body>
+</html>
